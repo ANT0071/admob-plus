@@ -1,29 +1,88 @@
-# [AdMob Plus](https://admob-plus.github.io)
+# AdMob Plus for GDevelop
 
-AdMob Plus is the successor of [cordova-plugin-admob-free](https://github.com/ratson/cordova-plugin-admob-free), which provides a cleaner API and build with modern tools.
+This is a version of [AdMob Plus](https://admob-plus.github.io/funding.html), a native Cordova plugin, used in [GDevelop game engine](https://gdevelop-app.com) for displaying ads with Google AdMob. It features a clean API built with modern tools.
 
-## Installation
+## About AdMob Plus
 
-[Getting started on admob-plus.github.io](https://admob-plus.github.io/docs/installation.html)
+If you want to use AdMob plus, it's recommended to first check [the original version](https://admob-plus.github.io/docs/) and [consider funding it](https://admob-plus.github.io/funding).
+
+Most changes or fixes done in this version should be contributed back to the original project.
+
+## Usage
+
+If you want to integrate ads in your GDevelop game, check [GDevelop documentation about AdMob](http://wiki.compilgames.net/doku.php/gdevelop5/all-features/admob).
+
+If you want to use this plugin in your Cordova app:
+
+```sh
+cordova plugin add gdevelop-cordova-admob-plus --variable APP_ID_ANDROID=ca-app-pub-xxx~xxx --variable APP_ID_IOS=ca-app-pub-xxx~xxx
+```
+
+Then follow the [original plugin documentation](https://admob-plus.github.io/docs/).
 
 ## Contributing
 
-- Star this repository
-- Open issue for feature requests
+Be sure to [yarn](https://yarnpkg.com/) installed and install the dependencies:
 
-## Roadmap
+```sh
+yarn
+```
 
-- [v1](https://github.com/admob-plus/admob-plus/projects/1)
-- [Post v1](https://github.com/admob-plus/admob-plus/projects/2)
+On macOS, install additional tools with Homebrew:
 
-## Free lunch needs sponsors
+```sh
+brew install swiftlint
+brew install ios-deploy
+```
 
-[You can help!](https://admob-plus.github.io/funding.html)
+### Working on the plugin (Cordova)
 
-## Disclaimer
+Prepare the Cordova plugin:
 
-This does not affiliate Google, but a community plugin utilize Google AdMob SDKs to provide better developer experience for hybrid applications.
+```
+cd packages/cordova
+yarn prepare
+```
 
-## License
+In a Cordova project, after `cordova platform add [ios|android]` you can add the local plugin:
 
-AdMob Plus is [MIT licensed](./LICENSE).
+```
+cordova plugin add --link path/to/admob-plus/packages/cordova/ --variable APP_ID_IOS=ca-app-pub-3940256099942544~3347511713 APP_ID_ANDROID=ca-app-pub-3940256099942544~3347511713
+```
+
+Run `cordova plugin rm cordova-admob-plus` beforehand in case of problem.
+
+### Tests and commits
+
+Run linting and tests:
+
+```
+yarn test-ios:lint
+yarn lint
+yarn test
+```
+
+You can run the test app:
+
+```
+cd examples/basic
+cordova platform add android && cordova run android
+cordova platform add ios && cordova run ios
+```
+
+Commit as usual with git. Hooks will run linting and commitlint (so you must have run `yarn` before).
+
+### Publish the plugin (Cordova)
+
+Ensure you are logged in npm (`npm login`) and have the rights to publish the npm package.
+
+```
+cd packages/cordova
+npm publish
+```
+
+## License and Disclaimer
+
+This project is not officially affiliated with Google.
+
+This project is [MIT licensed](./LICENSE).
