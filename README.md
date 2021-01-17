@@ -47,7 +47,7 @@ yarn prepare
 In a Cordova project, after `cordova platform add [ios|android]` you can add the local plugin:
 
 ```
-cordova plugin add --link path/to/admob-plus/packages/cordova/ --variable APP_ID_IOS=ca-app-pub-3940256099942544~3347511713 APP_ID_ANDROID=ca-app-pub-3940256099942544~3347511713
+cordova plugin add --link path/to/admob-plus/packages/cordova/ --variable APP_ID_IOS=ca-app-pub-3940256099942544~3347511713 --variable APP_ID_ANDROID=ca-app-pub-3940256099942544~3347511713
 ```
 
 Run `cordova plugin rm cordova-admob-plus` beforehand in case of problem.
